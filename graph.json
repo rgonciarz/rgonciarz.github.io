@@ -1,47 +1,21 @@
 {
   "nodes": [
-    {
-      "name": "Peter",
-      "label": "Person",
-      "id": 1
-    },
-    {
-      "name": "Michael",
-      "label": "Person",
-      "id": 2
-    },
-    {
-      "name": "Neo4j",
-      "label": "Database",
-      "id": 3
-    },
-    {
-      "name": "Graph Database",
-      "label": "Database",
-      "id": 4
-    }
+    { "name": "b.start-transaction.events", "label": "topic", "id": 1 },
+    { "name": "b.trans-create.events", "label": "topic", "id": 2 },
+    { "name": "t.prog.events", "label": "topic", "id": 3 },
+    { "name": "b.trans-shadowed.events", "label": "topic", "id": 4 },
+    { "name": "b.start-transaction.commands", "label": "topic", "id": 5 },
+    { "name": "b.price-calculated.events", "label": "topic", "id": 6 },
+    { "name": "b.transfer-loader", "label": "service", "id": 7 },
+    { "name": "b.start-transaction", "label": "service", "id": 8 }
   ],
   "links": [
-    {
-      "source": 1,
-      "target": 2,
-      "type": "KNOWS",
-      "since": 2010
-    },
-    {
-      "source": 1,
-      "target": 3,
-      "type": "FOUNDED"
-    },
-    {
-      "source": 2,
-      "target": 3,
-      "type": "WORKS_ON"
-    },
-    {
-      "source": 3,
-      "target": 4,
-      "type": "IS_A"
-    }
+    { "source": 8, "target": 1, "type": "TransStarted" },
+    { "source": 6, "target": 8, "type": "PriCalculated" },
+    { "source": 5, "target": 8, "type": "StTransaction" },
+    { "source": 1, "target": 7, "type": "TransStarted" },
+    { "source": 2, "target": 7, "type": "TransCreated" },
+    { "source": 3, "target": 7, "type": "FunPledge" },
+    { "source": 7, "target": 4, "type": "TransShadowed" }
   ]
 }
